@@ -1,7 +1,6 @@
 """
 Ollama LLM service for form field mapping
 """
-import json
 from typing import Dict
 from langchain_ollama import ChatOllama
 from pydantic import BaseModel, Field
@@ -78,7 +77,7 @@ class OllamaService:
             4. **FORMATTING**:
                - Email: lowercase, no spaces.
                - Date: YYYY-MM-DD.
-               - Phone: digits and hyphens only.
+               - Phone: digits only.
                - Gender: lowercase (male/female).
             5. **OUTPUT**: Return a JSON object where keys are field IDs and values are the extracted strings.
             

@@ -3,6 +3,7 @@ FormFiller - Privacy-First AI Agent for Web Form Filling
 Main application entry point
 """
 import uvicorn
+from contextlib import asynccontextmanager
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from config.settings import settings
@@ -10,11 +11,34 @@ from api.routes import router
 from utils.logger import logger
 
 
+@asynccontextmanager
+async def lifespan(app: FastAPI):
+    """Manage application lifespan events"""
+    # Startup code
+    logger.info("Initializing AI models...")
+    from services.whisper_service import get_whisper_service
+    from services.ollama_service import get_ollama_service
+    
+    # Initialize services in background to avoid blocking startup if possible, 
+    # but for now we'll do it synchronously to ensure readiness
+    try:
+        get_whisper_service()
+        get_ollama_service()
+        logger.info("AI models initialized successfully")
+    except Exception as e:
+        logger.warning(f"Failed to initialize AI models on startup: {e}")
+    
+    yield
+    
+    # Shutdown code (if needed in the future)
+
+
 # Create FastAPI application
 app = FastAPI(
     title=settings.APP_NAME,
     description="Privacy-first AI agent that automates web form filling using voice commands",
-    version="0.1.0"
+    version="0.1.0",
+    lifespan=lifespan
 )
 
 # Add CORS middleware to allow requests from Chrome Extension
@@ -28,23 +52,6 @@ app.add_middleware(
 
 # Include API routes
 app.include_router(router)
-
-
-@app.on_event("startup")
-async def startup_event():
-    """Initialize services on startup"""
-    logger.info("Initializing AI models...")
-    from services.whisper_service import get_whisper_service
-    from services.ollama_service import get_ollama_service
-    
-    # Initialize services in background to avoid blocking startup if possible, 
-    # but for now we'll do it synchronously to ensure readiness
-    try:
-        get_whisper_service()
-        get_ollama_service()
-        logger.info("AI models initialized successfully")
-    except Exception as e:
-        logger.warning(f"Failed to initialize AI models on startup: {e}")
 
 
 @app.get("/", tags=["root"])
