@@ -1,11 +1,12 @@
 import logging
 import sys
 from pathlib import Path
+from logging.handlers import RotatingFileHandler, TimedRotatingFileHandler
 from config.settings import settings
 
 def setup_logger(name: str = "FormFiller"):
     """
-    Configure and return a logger instance
+    Configure and return a logger instance with date-based log rotation
     """
     # Create logs directory if it doesn't exist
     log_dir = Path("logs")
@@ -30,8 +31,18 @@ def setup_logger(name: str = "FormFiller"):
         console_handler.setFormatter(formatter)
         logger.addHandler(console_handler)
         
-        # File Handler
-        file_handler = logging.FileHandler(log_dir / "app.log", encoding='utf-8')
+        # File Handler with Date-based Rotation (TimedRotatingFileHandler)
+        # Creates a new log file every day at midnight
+        # Example: app.log, app.log.2026-01-05, app.log.2026-01-06, etc.
+        file_handler = TimedRotatingFileHandler(
+            filename=log_dir / "app.log",
+            when="midnight",  # Rotate at midnight
+            interval=1,  # Every day
+            backupCount=30,  # Keep last 30 days of logs
+            encoding='utf-8'
+        )
+        # Add date format to the backup file names
+        file_handler.suffix = "%Y-%m-%d"
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
 
