@@ -13,9 +13,19 @@
     "https://localhost:8000/*",
     "<all_urls>"
   ],
+  "icons": {
+    "16": "images/icon.png",
+    "48": "images/icon.png",
+    "128": "images/icon.png"
+  },
   "action": {
     "default_popup": "popup.html",
-    "default_title": "FormFiller"
+    "default_title": "FormFiller",
+    "default_icon": {
+        "16": "images/icon.png",
+        "48": "images/icon.png",
+        "128": "images/icon.png"
+    }
   },
   "background": {
     "service_worker": "background.js"
@@ -23,8 +33,19 @@
   "content_scripts": [
     {
       "matches": ["<all_urls>", "file://*/*"],
-      "js": ["content_script.js"],
+      "js": ["content_loader.js"],
       "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "content_script.js",
+        "formExtractor.js",
+        "formFiller.js",
+        "audioRecorder.js"
+      ],
+      "matches": ["<all_urls>", "file://*/*"]
     }
   ]
 }

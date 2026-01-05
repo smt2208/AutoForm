@@ -1,19 +1,11 @@
 """
 Ollama LLM service for form field mapping
 """
-from typing import Dict
+from typing import Dict, Any
 from langchain_ollama import ChatOllama
-from pydantic import BaseModel, Field
 from config.settings import settings
+from config.prompts import get_form_mapping_prompt
 from utils.logger import logger
-
-
-class FormFieldMapping(BaseModel):
-    """Structured output model for form field mapping"""
-    mapped_fields: Dict[str, str] = Field(
-        description="Dictionary mapping field IDs to extracted values"
-    )
-
 
 class OllamaService:
     """Service for LLM-based form field mapping using Ollama"""
@@ -24,25 +16,23 @@ class OllamaService:
         self._load_model()
     
     def _load_model(self) -> None:
-        """Load the Ollama model with structured output"""
+        """Load the Ollama model"""
         try:
             logger.info(f"Loading Ollama model: {settings.OLLAMA_MODEL}...")
-            base_model = ChatOllama(
+            self.model = ChatOllama(
                 model=settings.OLLAMA_MODEL,
                 base_url=settings.OLLAMA_BASE_URL,
                 temperature=0,
-                format="json"
+                format="json"  # Enforces JSON mode on the model side
             )
-            # Apply structured output schema
-            self.model = base_model.with_structured_output(FormFieldMapping)
-            logger.info("Ollama model loaded successfully with structured output")
+            logger.info("Ollama model loaded successfully")
         except Exception as e:
             logger.error(f"Error loading Ollama model: {str(e)}")
             raise
     
     def map_text_to_fields(self, transcribed_text: str, fields_json: str) -> dict:
         """
-        Map transcribed text to form fields using LLM
+        Map transcribed text to form fields using LLM with structured parsing
         
         Args:
             transcribed_text: The transcribed audio text
@@ -50,77 +40,40 @@ class OllamaService:
             
         Returns:
             Dictionary with mapped field values
-            
-        Raises:
-            Exception: If mapping fails
         """
         try:
             if self.model is None:
                 raise RuntimeError("Ollama model not initialized")
             
-            # Build improved prompt with specific formatting rules
-            prompt = f"""You are a smart form-filling assistant. Your goal is to map the user's spoken instructions to the correct form fields.
+            logger.info(f"Processing transcription: {transcribed_text[:50]}...")
+            
+            prompt_template, parser = get_form_mapping_prompt()
 
-            CONTEXT:
-            The user is filling out a form. They might provide information for all fields at once, or just a few fields at a time (partial filling).
+            chain = prompt_template | self.model | parser
             
-            Form Fields Structure:
-            {fields_json}
+            logger.debug("Invoking LLM chain...")
+            parsed_response = chain.invoke({
+                "fields_json": fields_json, 
+                "transcribed_text": transcribed_text
+            })
+            
+            # The parser returns the Pydantic structure as a dict: {'mapped_fields': {...}}
+            mapped_data = parsed_response.get("mapped_fields", {})
+            
+            logger.debug(f"Raw parsed data: {mapped_data}")
 
-            User's Speech:
-            "{transcribed_text}"
-
-            CRITICAL INSTRUCTIONS:
-            1. **PARTIAL FILLING**: Only extract information that is EXPLICITLY mentioned in the speech.
-            2. **NO HALLUCINATIONS**: If the speech talks about "Address", DO NOT touch the "Name" or "Email" fields. Leave them out of your response.
-            3. **MAPPING**: Match the speech to the field 'label' or 'name'.
-            4. **FORMATTING**:
-               - Email: lowercase, no spaces.
-               - Date: YYYY-MM-DD.
-               - Phone: digits only.
-               - Gender: lowercase (male/female).
-            5. **OUTPUT**: Return a JSON object where keys are field IDs and values are the extracted strings.
+            final_data = self._post_process_fields(mapped_data)
             
-            IMPORTANT: If a field is not mentioned in the speech, DO NOT include it in the JSON output.
-
-            Task: Generate the JSON mapping."""
-            
-            logger.info(f"Sending prompt to Ollama model...")
-            logger.debug(f"Transcribed Text: {transcribed_text}")
-            
-            # Invoke model with structured output
-            response = self.model.invoke(prompt)
-            
-            # Extract mapped fields from structured response
-            # Handle both Pydantic model and dictionary return types
-            if isinstance(response, dict):
-                mapped_data = response.get("mapped_fields", {})
-            elif hasattr(response, "mapped_fields"):
-                mapped_data = getattr(response, "mapped_fields")
-            else:
-                logger.warning(f"Unexpected response type: {type(response)}")
-                mapped_data = {}
-            
-            # Post-process to ensure email is lowercase and clean up values
-            mapped_data = self._post_process_fields(mapped_data)
-            
-            logger.info(f"LLM Response (Processed): {mapped_data}")
-            
-            return mapped_data
+            logger.info(f"Final Mapped Data: {final_data}")
+            return final_data
             
         except Exception as e:
             logger.error(f"Error during field mapping: {str(e)}")
-            raise
+            return {}
     
     def _post_process_fields(self, fields: dict) -> dict:
         """
         Post-process extracted fields to ensure correct formatting
-        
-        Args:
-            fields: Dictionary of field values
-            
-        Returns:
-            Cleaned dictionary of field values
         """
         cleaned = {}
         for key, value in fields.items():
@@ -130,24 +83,21 @@ class OllamaService:
             
             if isinstance(value, str):
                 value = value.strip()
-                if value == "" or value.lower() == "none" or value.lower() == "null" or value.lower() == "n/a":
+                # Don't filter out "false" - it's needed for unchecking boxes
+                if value == "" or value.lower() in ["none", "null", "n/a"]:
                     continue
                 
             # Normalize email fields to lowercase
             if 'email' in key.lower() and isinstance(value, str):
-                value = value.lower().strip()
-                # Remove spaces from email
-                value = value.replace(' ', '')
+                value = value.lower().replace(' ', '')
             
             # Clean up phone numbers
             elif 'phone' in key.lower() and isinstance(value, str):
-                # Remove all non-digit characters, keep only digits
                 value = ''.join(filter(str.isdigit, value))
             
             # Normalize gender to lowercase
             elif 'gender' in key.lower() and isinstance(value, str):
                 value = value.lower().strip()
-                # Map common variations
                 if value in ['m', 'man', 'boy']:
                     value = 'male'
                 elif value in ['f', 'woman', 'girl']:
@@ -161,14 +111,7 @@ class OllamaService:
 # Singleton instance
 _ollama_service = None
 
-
 def get_ollama_service() -> OllamaService:
-    """
-    Get or create Ollama service instance
-    
-    Returns:
-        OllamaService instance
-    """
     global _ollama_service
     if _ollama_service is None:
         _ollama_service = OllamaService()

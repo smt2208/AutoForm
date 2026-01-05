@@ -23,7 +23,7 @@ class Settings(BaseSettings):
     WHISPER_DEVICE: str = "cpu"  # Options: cpu, cuda
     
     # Ollama
-    OLLAMA_MODEL: str = "llama3.2:3b"
+    OLLAMA_MODEL: str = "ministral-3:3b"
     OLLAMA_BASE_URL: str = "http://localhost:11434"
     
     class Config:

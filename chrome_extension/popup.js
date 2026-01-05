@@ -44,7 +44,6 @@ function updateStatus(text, isActive = false) {
  * Handle Start Recording button click
  */
 startBtn.addEventListener('click', async () => {
-    console.log('Start Recording button clicked');
     clearError();
     
     try {
@@ -64,8 +63,6 @@ startBtn.addEventListener('click', async () => {
         updateStatus('Recording...', true);
         transcriptDiv.textContent = 'Listening to your voice...';
         
-        console.log('Recording started');
-        
     } catch (error) {
         showError(`Failed to start recording: ${error.message}`);
         updateStatus('Ready to record', false);
@@ -76,8 +73,6 @@ startBtn.addEventListener('click', async () => {
  * Handle Stop Recording button click
  */
 stopBtn.addEventListener('click', async () => {
-    console.log('Stop Recording button clicked');
-    
     try {
         // Get active tab
         const [tab] = await chrome.tabs.query({ active: true, currentWindow: true });
@@ -109,26 +104,40 @@ stopBtn.addEventListener('click', async () => {
  * Process the recorded audio and send to backend
  */
 async function processRecordingWithBlob(audioBlobData, tabId) {
+    const coolMessages = [
+        { text: '🔍 Analyzing your voice...', duration: 2000 },
+        { text: '🧠 Activating AI brain...', duration: 2000 },
+        { text: '🐛 Crawling through the form...', duration: 3000 },
+        { text: '⚡ Supercharging intelligence...', duration: 2000 },
+        { text: '🎯 Pinpointing form fields...', duration: 2000 },
+        { text: '✏️ Precision filling in progress...', duration: 2000 }
+    ];
+
+    let messageIndex = 0;
+    const messageInterval = setInterval(() => {
+        if (messageIndex < coolMessages.length) {
+            const msg = coolMessages[messageIndex];
+            transcriptDiv.textContent = msg.text;
+            messageIndex++;
+        }
+    }, 2500);
+
     try {
         // Convert base64 to blob
         const audioBlob = await (await fetch(audioBlobData)).blob();
-        console.log(`Audio blob created: ${audioBlob.size} bytes`);
         
         // Extract form fields from the page
         updateStatus('Extracting form fields...', false);
         const response = await chrome.tabs.sendMessage(tabId, { action: 'extractFields' });
         const formFields = response.fields;
         
-        console.log('Extracted form fields:', formFields);
-        
         if (formFields.length === 0) {
+            clearInterval(messageInterval);
             showError('No form fields found on this page');
             updateStatus('Ready to record', false);
             transcriptDiv.textContent = '';
             return;
         }
-        
-        transcriptDiv.textContent = `Found ${formFields.length} form fields. Sending to AI...`;
         
         // Prepare FormData
         const formData = new FormData();
@@ -139,26 +148,22 @@ async function processRecordingWithBlob(audioBlobData, tabId) {
         updateStatus('Processing with AI...', false);
         const backendUrl = CONFIG.BACKEND_URL + CONFIG.API_ENDPOINTS.process;
         
-        console.log('Sending request to:', backendUrl);
-        
         const apiResponse = await fetch(backendUrl, {
             method: 'POST',
             body: formData
         });
+        
+        clearInterval(messageInterval);
         
         if (!apiResponse.ok) {
             throw new Error(`Backend returned ${apiResponse.status}: ${apiResponse.statusText}`);
         }
         
         const result = await apiResponse.json();
-        console.log('Backend response:', result);
         
         if (!result.success) {
             throw new Error(result.message || 'Backend processing failed');
         }
-        
-        // Display transcribed text
-        transcriptDiv.textContent = `Transcribed: "${result.transcribed_text}"`;
         
         // Fill form fields with mapped data
         updateStatus('Filling form...', false);
@@ -205,13 +210,12 @@ async function processRecordingWithBlob(audioBlobData, tabId) {
         
         // Success!
         updateStatus('Form filled successfully! ✓', false);
-        console.log('Form filled successfully');
+        transcriptDiv.textContent = '🎉 All fields filled perfectly!';
         
     } catch (error) {
         showError(error.message);
         updateStatus('Ready to record', false);
         transcriptDiv.textContent = '';
-        console.error('Processing error:', error);
     }
 }
 

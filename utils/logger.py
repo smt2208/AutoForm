@@ -34,6 +34,12 @@ def setup_logger(name: str = "FormFiller"):
         file_handler = logging.FileHandler(log_dir / "app.log", encoding='utf-8')
         file_handler.setFormatter(formatter)
         logger.addHandler(file_handler)
+
+        # Reduce noise from third-party libraries
+        logging.getLogger("httpcore").setLevel(logging.WARNING)
+        logging.getLogger("httpx").setLevel(logging.WARNING)
+        logging.getLogger("multipart").setLevel(logging.WARNING)
+        logging.getLogger("uvicorn").setLevel(logging.INFO)
     
     return logger
 

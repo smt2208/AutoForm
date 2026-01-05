@@ -14,7 +14,6 @@ from utils.logger import logger
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Manage application lifespan events"""
-    # Startup code
     logger.info("Initializing AI models...")
     from services.whisper_service import get_whisper_service
     from services.ollama_service import get_ollama_service
@@ -29,8 +28,6 @@ async def lifespan(app: FastAPI):
         logger.warning(f"Failed to initialize AI models on startup: {e}")
     
     yield
-    
-    # Shutdown code (if needed in the future)
 
 
 # Create FastAPI application

@@ -4,11 +4,12 @@ API routes for FormFiller
 from fastapi import APIRouter, UploadFile, File, Form
 from pydantic import BaseModel
 import json
+import tempfile
+import shutil
+import os
 from services.whisper_service import get_whisper_service
 from services.ollama_service import get_ollama_service
-from utils.file_handler import FileHandler
 from utils.logger import logger
-
 
 router = APIRouter(prefix="/api", tags=["form-filling"])
 
@@ -36,8 +37,6 @@ async def process_audio(
     Returns:
         ProcessResponse with transcribed text and mapped form data
     """
-    temp_file_path = None
-    
     try:
         # Parse form data JSON
         try:
@@ -50,18 +49,39 @@ async def process_audio(
                 message="Invalid JSON in form_data_json"
             )
         
-        # Save uploaded audio file temporarily
-        temp_file_path = f"temp_uploads/{audio_file.filename}"
+        # Handle Audio File using tempfile
+        original_filename = audio_file.filename or ""
         
-        with open(temp_file_path, "wb") as buffer:
-            contents = await audio_file.read()
-            buffer.write(contents)
+        # Determine the extension to help Whisper identify the format
+        file_ext = os.path.splitext(original_filename)[1]
+        if not file_ext:
+            file_ext = ".wav"
+
+        # Create a temporary file that auto-deletes on close
+        temp_audio = tempfile.NamedTemporaryFile(suffix=file_ext, delete=False)
+        temp_file_path = temp_audio.name
         
-        logger.info(f"Audio file saved temporarily at: {temp_file_path}")
-        
-        # Transcribe audio using Whisper
-        whisper_service = get_whisper_service()
-        transcribed_text = whisper_service.transcribe(temp_file_path)
+        try:
+            logger.info(f"Processing audio via temporary file: {temp_file_path}")
+            
+            shutil.copyfileobj(audio_file.file, temp_audio)
+            
+            # Flush the buffer to ensure data is physically written
+            temp_audio.flush()
+            temp_audio.close()
+            
+            # Transcribe audio using Whisper
+            whisper_service = get_whisper_service()
+            transcribed_text = whisper_service.transcribe(temp_file_path)
+            
+        finally:
+            # Clean up the temporary file
+            try:
+                if os.path.exists(temp_file_path):
+                    os.unlink(temp_file_path)
+                    logger.debug(f"Cleaned up temporary file: {temp_file_path}")
+            except Exception as cleanup_error:
+                logger.warning(f"Failed to clean up temporary file {temp_file_path}: {cleanup_error}")
         
         # Map text to form fields using Ollama
         ollama_service = get_ollama_service()
@@ -81,14 +101,11 @@ async def process_audio(
         
     except Exception as e:
         logger.error(f"Error in process endpoint: {str(e)}")
+        # Ideally, log the full stack trace in production
+        # logger.exception(e)
         return ProcessResponse(
             success=False,
             transcribed_text="",
             form_data={},
             message=f"Error processing audio: {str(e)}"
         )
-    
-    finally:
-        # Clean up temporary file
-        if temp_file_path:
-            FileHandler.delete_file(temp_file_path)
