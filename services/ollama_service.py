@@ -1,11 +1,13 @@
 """
 Ollama LLM service for form field mapping
 """
-from typing import Dict, Any
 from langchain_ollama import ChatOllama
 from config.settings import settings
+from dotenv import load_dotenv
 from config.prompts import get_form_mapping_prompt
 from utils.logger import logger
+from langchain_google_genai import ChatGoogleGenerativeAI
+
 
 class OllamaService:
     """Service for LLM-based form field mapping using Ollama"""
@@ -14,20 +16,29 @@ class OllamaService:
         """Initialize Ollama LLM"""
         self.model = None
         self._load_model()
+        load_dotenv()
     
     def _load_model(self) -> None:
         """Load the Ollama model"""
         try:
-            logger.info(f"Loading Ollama model: {settings.OLLAMA_MODEL}...")
-            self.model = ChatOllama(
-                model=settings.OLLAMA_MODEL,
-                base_url=settings.OLLAMA_BASE_URL,
-                temperature=0,
-                format="json"  # Enforces JSON mode on the model side
-            )
-            logger.info("Ollama model loaded successfully")
+            if settings.GOOGLE_API_KEY and settings.GOOGLE_API_KEY.strip():
+                logger.info("Google API key found, using Google model instead of Ollama.")
+                self.model = ChatGoogleGenerativeAI(
+                    model=settings.GOOGLE_MODEL, 
+                    temperature=0.2
+                )
+                logger.info("Google model loaded successfully")
+            else:
+                logger.info(f"No Google API key found, loading Ollama model: {settings.OLLAMA_MODEL}...")
+                self.model = ChatOllama(
+                    model=settings.OLLAMA_MODEL,
+                    base_url=settings.OLLAMA_BASE_URL,
+                    temperature=0.2,
+                    format="json"  # Enforces JSON mode on the model side
+                )
+                logger.info("Ollama model loaded successfully")
         except Exception as e:
-            logger.error(f"Error loading Ollama model: {str(e)}")
+            logger.error(f"Error loading model: {str(e)}")
             raise
     
     def map_text_to_fields(self, transcribed_text: str, fields_json: str) -> dict:
@@ -83,7 +94,6 @@ class OllamaService:
             
             if isinstance(value, str):
                 value = value.strip()
-                # Don't filter out "false" - it's needed for unchecking boxes
                 if value == "" or value.lower() in ["none", "null", "n/a"]:
                     continue
                 

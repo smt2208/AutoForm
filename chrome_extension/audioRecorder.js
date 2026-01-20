@@ -59,4 +59,8 @@ async function stopRecording() {
     });
 }
 
-export { startRecording, stopRecording };
+function isRecording() {
+    return mediaRecorder && mediaRecorder.state === 'recording';
+}
+
+export { startRecording, stopRecording, isRecording };

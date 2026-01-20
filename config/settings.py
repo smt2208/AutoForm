@@ -2,8 +2,12 @@
 Configuration settings for FormFiller application
 """
 import os
+from typing import Any
 from pathlib import Path
 from pydantic_settings import BaseSettings
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 class Settings(BaseSettings):
@@ -20,15 +24,20 @@ class Settings(BaseSettings):
     # Audio processing
     UPLOAD_DIR: str = "temp_uploads"
     WHISPER_MODEL: str = "medium"  # Options: tiny, base, small, medium, large-v3
-    WHISPER_DEVICE: str = "cpu"  # Options: cpu, cuda
+    WHISPER_DEVICE: str = "cuda"  # Options: cpu, cuda
     
     # Ollama
     OLLAMA_MODEL: str = "ministral-3:3b"
     OLLAMA_BASE_URL: str = "http://localhost:11434"
+
+    # Groq
+    GOOGLE_API_KEY : Any = None
+    GOOGLE_MODEL: str = "gemini-2.5-flash-lite"
     
     class Config:
         env_file = ".env"
         case_sensitive = True
+        extra = "allow"
     
     def __init__(self, **data):
         super().__init__(**data)

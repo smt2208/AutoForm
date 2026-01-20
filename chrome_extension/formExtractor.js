@@ -16,8 +16,11 @@ function extractFormFields() {
         }
         
         const style = window.getComputedStyle(element);
-        if (style.display === 'none' || style.visibility === 'hidden' || element.offsetParent === null) {
-            return;
+        const isSelect2Hidden = element.classList.contains('select2-hidden-accessible');
+        if (!isSelect2Hidden) {
+            if (style.display === 'none' || style.visibility === 'hidden' || element.offsetParent === null) {
+                return;
+            }
         }
         
         const fieldId = element.id || 
@@ -39,6 +42,7 @@ function extractFormFields() {
         
         let labelText = '';
         
+        // Strategy 1: Check for label with 'for' attribute
         if (element.id) {
             const label = document.querySelector(`label[for="${element.id}"]`);
             if (label) {
@@ -46,6 +50,7 @@ function extractFormFields() {
             }
         }
         
+        // Strategy 2: Check aria-labelledby
         if (!labelText) {
             const ariaLabelledBy = element.getAttribute('aria-labelledby');
             if (ariaLabelledBy) {
@@ -56,13 +61,23 @@ function extractFormFields() {
             }
         }
         
+        // Strategy 3: Check if element is inside a label (extract only text nodes)
         if (!labelText) {
             const parentLabel = element.closest('label');
             if (parentLabel) {
                 labelText = Array.from(parentLabel.childNodes)
                     .filter(node => node.nodeType === Node.TEXT_NODE)
                     .map(node => node.textContent.trim())
+                    .filter(text => text.length > 0)
                     .join(' ');
+            }
+        }
+        
+        // Strategy 4: Check sibling labels (radio buttons often have labels next to them)
+        if (!labelText && (type === 'radio' || type === 'checkbox')) {
+            const nextLabel = element.nextElementSibling;
+            if (nextLabel && nextLabel.tagName === 'LABEL') {
+                labelText = nextLabel.textContent.trim();
             }
         }
         
@@ -89,13 +104,44 @@ function extractFormFields() {
             }
         }
         
-        formFields.push({
+        // Capture options for select elements
+        let options = [];
+        if (fieldType === 'select') {
+            options = Array.from(element.options)
+                .filter(opt => opt.value) // Exclude empty options
+                .map(opt => ({
+                    value: opt.value,
+                    text: opt.text.trim()
+                }));
+        }
+        
+        // Capture current value
+        let currentValue = element.value || '';
+        if (type === 'checkbox' || type === 'radio') {
+            currentValue = element.checked ? 'checked' : 'unchecked';
+        }
+        
+        const fieldInfo = {
             id: fieldId,
             name: fieldName,
             type: fieldType,
             label: labelText,
-            tagName: element.tagName.toLowerCase()
-        });
+            tagName: element.tagName.toLowerCase(),
+            placeholder: element.placeholder || '',
+            currentValue: currentValue
+        };
+        
+        // Add options for select elements
+        if (options.length > 0) {
+            fieldInfo.options = options;
+        }
+        
+        // Mark Select2 fields
+        if (element.classList.contains('select2-hidden-accessible')) {
+            fieldInfo.isSelect2 = true;
+        }
+        
+        formFields.push(fieldInfo);
     });
     
     return formFields;

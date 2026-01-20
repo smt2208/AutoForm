@@ -5,7 +5,7 @@
 
 import { extractFormFields } from './formExtractor.js';
 import { fillFormFields } from './formFiller.js';
-import { startRecording, stopRecording } from './audioRecorder.js';
+import { startRecording, stopRecording, isRecording } from './audioRecorder.js';
 
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
     if (!request || typeof request.action !== 'string') {
@@ -14,6 +14,11 @@ chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
     }
 
     try {
+        if (request.action === 'getRecordingStatus') {
+            sendResponse({ isRecording: isRecording() });
+            return true;
+        }
+
         if (request.action === 'extractFields') {
             const fields = extractFormFields();
             sendResponse({ fields: fields });
