@@ -10,3 +10,5 @@ class FormFieldMapping(BaseModel):
     mapped_fields: Dict[str, str] = Field(
         description="Dictionary mapping field IDs to extracted values. Example: {'field_1': 'John Doe', 'email_input': 'john@example.com'}"
     )
+
+

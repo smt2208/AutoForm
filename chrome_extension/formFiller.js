@@ -165,7 +165,7 @@ function fillFormFields(fieldData) {
                             }
                         }
                         
-                        // Sub-Strategy B: Check associated labels (including next sibling labels)
+                        // Sub-Strategy B: Check associated labels
                         if (!found) {
                             for (const input of group) {
                                 let labelText = '';

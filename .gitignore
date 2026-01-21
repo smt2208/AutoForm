@@ -201,7 +201,6 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
-# Marimo
-marimo/_static/
-marimo/_lsp/
-__marimo__/
+# Cache directories
+models/whisper_cache/
+temp_uploads/

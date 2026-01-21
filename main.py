@@ -18,8 +18,8 @@ async def lifespan(app: FastAPI):
     from services.whisper_service import get_whisper_service
     from services.ollama_service import get_ollama_service
     
-    # Initialize services in background to avoid blocking startup if possible, 
-    # but for now we'll do it synchronously to ensure readiness
+    # Initialize AI services (Whisper for speech-to-text, Ollama for LLM)
+    # Done synchronously to ensure models are ready before accepting requests
     try:
         get_whisper_service()
         get_ollama_service()

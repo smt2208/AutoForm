@@ -7,16 +7,19 @@ function extractFormFields() {
     const formFields = [];
     const seenFields = new Set();
     
+    // Select all form input elements
     const elements = document.querySelectorAll('input, select, textarea');
     
     elements.forEach((element, index) => {
         const type = element.type?.toLowerCase() || 'text';
+        // Skip non-interactive input types
         if (type === 'hidden' || type === 'submit' || type === 'button' || type === 'reset' || type === 'image') {
             return;
         }
         
         const style = window.getComputedStyle(element);
         const isSelect2Hidden = element.classList.contains('select2-hidden-accessible');
+        // Skip hidden elements unless they're Select2 hidden fields
         if (!isSelect2Hidden) {
             if (style.display === 'none' || style.visibility === 'hidden' || element.offsetParent === null) {
                 return;
@@ -81,6 +84,7 @@ function extractFormFields() {
             }
         }
         
+        // Fallback to aria-label, placeholder, or title
         if (!labelText) {
             labelText = element.getAttribute('aria-label') || 
                        element.placeholder || 

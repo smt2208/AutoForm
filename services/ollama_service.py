@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 from config.prompts import get_form_mapping_prompt
 from utils.logger import logger
 from langchain_google_genai import ChatGoogleGenerativeAI
+from langchain_openai import ChatOpenAI
 
 
 class OllamaService:
@@ -22,12 +23,12 @@ class OllamaService:
         """Load the Ollama model"""
         try:
             if settings.GOOGLE_API_KEY and settings.GOOGLE_API_KEY.strip():
-                logger.info("Google API key found, using Google model instead of Ollama.")
+                logger.info("Google API key found, using Gemini model instead of Ollama.")
                 self.model = ChatGoogleGenerativeAI(
                     model=settings.GOOGLE_MODEL, 
                     temperature=0.2
                 )
-                logger.info("Google model loaded successfully")
+                logger.info("Gemini model loaded successfully")
             else:
                 logger.info(f"No Google API key found, loading Ollama model: {settings.OLLAMA_MODEL}...")
                 self.model = ChatOllama(
@@ -54,7 +55,7 @@ class OllamaService:
         """
         try:
             if self.model is None:
-                raise RuntimeError("Ollama model not initialized")
+                raise RuntimeError("Model is not initialized")
             
             logger.info(f"Processing transcription: {transcribed_text[:50]}...")
             
@@ -62,7 +63,7 @@ class OllamaService:
 
             chain = prompt_template | self.model | parser
             
-            logger.debug("Invoking LLM chain...")
+            logger.info("Triggering the chain...")
             parsed_response = chain.invoke({
                 "fields_json": fields_json, 
                 "transcribed_text": transcribed_text
@@ -71,7 +72,7 @@ class OllamaService:
             # The parser returns the Pydantic structure as a dict: {'mapped_fields': {...}}
             mapped_data = parsed_response.get("mapped_fields", {})
             
-            logger.debug(f"Raw parsed data: {mapped_data}")
+            logger.info(f"Raw parsed data: {mapped_data}")
 
             final_data = self._post_process_fields(mapped_data)
             

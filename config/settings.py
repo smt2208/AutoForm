@@ -24,15 +24,18 @@ class Settings(BaseSettings):
     # Audio processing
     UPLOAD_DIR: str = "temp_uploads"
     WHISPER_MODEL: str = "medium"  # Options: tiny, base, small, medium, large-v3
-    WHISPER_DEVICE: str = "cuda"  # Options: cpu, cuda
+    WHISPER_DEVICE: str = "cpu"  # Options: cpu, cuda
     
     # Ollama
-    OLLAMA_MODEL: str = "ministral-3:3b"
+    OLLAMA_MODEL: str = "gemma3:1b"
     OLLAMA_BASE_URL: str = "http://localhost:11434"
 
-    # Groq
-    GOOGLE_API_KEY : Any = None
+    # Gemini
+    GOOGLE_API_KEY : Any = os.getenv("GOOGLE_API_KEY", None)
     GOOGLE_MODEL: str = "gemini-2.5-flash-lite"
+
+    OPENAI_API_KEY: Any = os.getenv("OPENAI_API_KEY", None)
+    OPENAI_MODEL: str = "gpt-4.1-2025-04-14"
     
     class Config:
         env_file = ".env"

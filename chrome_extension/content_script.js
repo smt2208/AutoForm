@@ -7,7 +7,9 @@ import { extractFormFields } from './formExtractor.js';
 import { fillFormFields } from './formFiller.js';
 import { startRecording, stopRecording, isRecording } from './audioRecorder.js';
 
+// Listen for messages from popup or background script
 chrome.runtime.onMessage.addListener((request, _sender, sendResponse) => {
+    // Validate request format
     if (!request || typeof request.action !== 'string') {
         sendResponse({ error: 'Invalid request' });
         return true;

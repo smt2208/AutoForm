@@ -18,6 +18,7 @@ class WhisperService:
         """Load the Whisper model with configured settings"""
         try:
             logger.info(f"Loading Whisper model: {settings.WHISPER_MODEL}")
+            # Use int8 quantization for better performance on CPU
             self.model = WhisperModel(
                 settings.WHISPER_MODEL,
                 device=settings.WHISPER_DEVICE,
