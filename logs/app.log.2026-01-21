@@ -1,0 +1,256 @@
+2026-01-21 15:11:46 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 15:11:46 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 15:11:46 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 15:11:50 - FormFiller - INFO - Initializing AI models...
+2026-01-21 15:11:50 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 15:21:28 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 15:21:28 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 15:21:28 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 15:21:31 - FormFiller - INFO - Initializing AI models...
+2026-01-21 15:21:31 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 15:24:48 - FormFiller - ERROR - Error loading Whisper model: Data processing error: CAS service error : ReqwestMiddleware Error: Request failed after 5 retries
+2026-01-21 15:24:48 - FormFiller - WARNING - Failed to initialize AI models on startup: Data processing error: CAS service error : ReqwestMiddleware Error: Request failed after 5 retries
+2026-01-21 15:30:36 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 15:30:36 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 15:30:36 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 15:30:39 - FormFiller - INFO - Initializing AI models...
+2026-01-21 15:30:39 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 15:40:22 - FormFiller - INFO - Initializing AI models...
+2026-01-21 15:40:22 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 15:41:20 - FormFiller - INFO - Initializing AI models...
+2026-01-21 15:41:20 - FormFiller - WARNING - No HF_TOKEN found. Downloads may be slower and rate-limited.
+2026-01-21 15:41:20 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 15:41:20 - FormFiller - INFO - Cache directory: ./models/whisper_cache
+2026-01-21 15:42:38 - FormFiller - INFO - Initializing AI models...
+2026-01-21 15:42:38 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 15:43:46 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 15:43:46 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 15:43:46 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 15:43:49 - FormFiller - INFO - Initializing AI models...
+2026-01-21 15:43:49 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 15:56:52 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 15:56:52 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 15:56:52 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 15:56:58 - FormFiller - INFO - Initializing AI models...
+2026-01-21 15:56:58 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 15:57:05 - FormFiller - INFO - Whisper model loaded successfully
+2026-01-21 15:57:05 - FormFiller - INFO - Google API key found, using Gemini model instead of Ollama.
+2026-01-21 15:57:05 - FormFiller - INFO - Gemini model loaded successfully
+2026-01-21 15:57:05 - FormFiller - INFO - AI models initialized successfully
+2026-01-21 15:58:06 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpl2qjkrxt.webm
+2026-01-21 15:58:06 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpl2qjkrxt.webm
+2026-01-21 15:58:12 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 15:58:12 - FormFiller - DEBUG - Transcribed text:  First name is Shyam, middle name is Mohan, last name is Tripathi, alias is He, Guardian name is AK, age is 50, address is South Kolkata, mobile number is 9163642586
+2026-01-21 15:58:12 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpl2qjkrxt.webm
+2026-01-21 15:58:12 - FormFiller - INFO - Processing transcription:  First name is Shyam, middle name is Mohan, last n...
+2026-01-21 15:58:12 - FormFiller - INFO - Triggering the chain...
+2026-01-21 15:58:17 - FormFiller - INFO - Raw parsed data: {'cfname': 'Shyam', 'cmname': 'Mohan', 'clname': 'Tripathi', 'calias': 'He', 'cgname': 'AK', 'cage': '50', 'caddress': 'South Kolkata', 'cmobile': '9163642586'}
+2026-01-21 15:58:17 - FormFiller - INFO - Final Mapped Data: {'cfname': 'Shyam', 'cmname': 'Mohan', 'clname': 'Tripathi', 'calias': 'He', 'cgname': 'AK', 'cage': '50', 'caddress': 'South Kolkata', 'cmobile': '9163642586'}
+2026-01-21 16:08:13 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpxe5oh7gf.webm
+2026-01-21 16:08:13 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpxe5oh7gf.webm
+2026-01-21 16:08:15 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 16:08:15 - FormFiller - DEBUG - Transcribed text:  Thank you.
+2026-01-21 16:08:15 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpxe5oh7gf.webm
+2026-01-21 16:08:15 - FormFiller - INFO - Processing transcription:  Thank you....
+2026-01-21 16:08:15 - FormFiller - INFO - Triggering the chain...
+2026-01-21 16:08:18 - FormFiller - INFO - Raw parsed data: {}
+2026-01-21 16:08:18 - FormFiller - INFO - Final Mapped Data: {}
+2026-01-21 16:10:02 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpugtqutpw.webm
+2026-01-21 16:10:02 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpugtqutpw.webm
+2026-01-21 16:10:09 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 16:10:09 - FormFiller - DEBUG - Transcribed text:  First name is Shyam, middle name is Mohan, last name is Tripathi, alias is he, gender  is male, guardian is AK, age is 22, identification mark is no, arrest time is 9.15 am, district  is Hawda Rural, locality is 1, AC name is Hawda Uttar, municipality name is Hawda  Municipal Corporation, arrested by police, pin code is 711107, mobile number is 9163642586,  nature of offence is section 37, identification proof is water card.
+2026-01-21 16:10:09 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpugtqutpw.webm
+2026-01-21 16:10:09 - FormFiller - INFO - Processing transcription:  First name is Shyam, middle name is Mohan, last n...
+2026-01-21 16:10:09 - FormFiller - INFO - Triggering the chain...
+2026-01-21 16:10:12 - FormFiller - INFO - Raw parsed data: {'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan', 'arrest_lname': 'Tripathi', 'arrest_alias': 'He', 'sagender': 'Male', 'arrest_gname': 'AK', 'arrest_age': '22', 'arrest_idmark': 'No', 'arrest_time': '09:15:00', 'arrest_locality': '1', 'arrest_ac_name': 'Hawda Uttar', 'arrest_municipality_name': 'Hawda Municipal Corporation', 'arrest_by_whom': 'Police', 'arrest_pin': '711107', 'arrest_ph': '9163642586', 'arrest_nature_of_offence_charge': 'Section 37', 'id_type': 'voter_card', 'arrest_district': '3', 'arrest_ps': '3'}
+2026-01-21 16:10:12 - FormFiller - INFO - Final Mapped Data: {'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan', 'arrest_lname': 'Tripathi', 'arrest_alias': 'He', 'sagender': 'male', 'arrest_gname': 'AK', 'arrest_age': '22', 'arrest_idmark': 'No', 'arrest_time': '09:15:00', 'arrest_locality': '1', 'arrest_ac_name': 'Hawda Uttar', 'arrest_municipality_name': 'Hawda Municipal Corporation', 'arrest_by_whom': 'Police', 'arrest_pin': '711107', 'arrest_ph': '9163642586', 'arrest_nature_of_offence_charge': 'Section 37', 'id_type': 'voter_card', 'arrest_district': '3', 'arrest_ps': '3'}
+2026-01-21 17:06:25 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpfe3ign1f.webm
+2026-01-21 17:06:25 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpfe3ign1f.webm
+2026-01-21 17:06:27 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 17:06:27 - FormFiller - DEBUG - Transcribed text:  First name is Shyam, middle name is Mohan.
+2026-01-21 17:06:27 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpfe3ign1f.webm
+2026-01-21 17:06:27 - FormFiller - INFO - Processing transcription:  First name is Shyam, middle name is Mohan....
+2026-01-21 17:06:27 - FormFiller - INFO - Triggering the chain...
+2026-01-21 17:06:31 - FormFiller - INFO - Raw parsed data: {'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan'}
+2026-01-21 17:06:31 - FormFiller - INFO - Final Mapped Data: {'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan'}
+2026-01-21 17:20:19 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpx3n7xp9f.webm
+2026-01-21 17:20:19 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpx3n7xp9f.webm
+2026-01-21 17:20:27 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 17:20:27 - FormFiller - DEBUG - Transcribed text:  First name is Shyam, middle name is Mohan, last name is Tripathi, alias is he, guardian  name is AK Tripathi, age is 22, identification mark is no, arrest time is 9.15, district  is Hawda Rural, locality is 1, AC name is Hawda Uttar, municipality name is Hawda  Municipal Corporation, arrested by police, pin code is 711107, mobile number is 9163642586,  nature of offence is section 37, identification proof is no. 86, identification proof is  voter card.
+2026-01-21 17:20:27 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpx3n7xp9f.webm
+2026-01-21 17:20:27 - FormFiller - INFO - Processing transcription:  First name is Shyam, middle name is Mohan, last n...
+2026-01-21 17:20:27 - FormFiller - INFO - Triggering the chain...
+2026-01-21 17:20:31 - FormFiller - INFO - Raw parsed data: {'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan', 'arrest_lname': 'Tripathi', 'arrest_alias': 'He', 'arrest_gname': 'AK Tripathi', 'arrest_age': '22', 'arrest_idmark': 'No', 'arrest_time': '09:15', 'arrest_district': 'Hooghly Rural', 'arrest_locality': '1', 'arrest_ac_name': 'Hawda Uttar', 'arrest_municipality_name': 'Hawda Municipal Corporation', 'arrest_by_whom': 'Police', 'arrest_pin': '711107', 'arrest_ph': '9163642586', 'arrest_nature_of_offence_charge': 'Section 37', 'id_type': 'voter_card'}
+2026-01-21 17:20:31 - FormFiller - INFO - Final Mapped Data: {'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan', 'arrest_lname': 'Tripathi', 'arrest_alias': 'He', 'arrest_gname': 'AK Tripathi', 'arrest_age': '22', 'arrest_idmark': 'No', 'arrest_time': '09:15', 'arrest_district': 'Hooghly Rural', 'arrest_locality': '1', 'arrest_ac_name': 'Hawda Uttar', 'arrest_municipality_name': 'Hawda Municipal Corporation', 'arrest_by_whom': 'Police', 'arrest_pin': '711107', 'arrest_ph': '9163642586', 'arrest_nature_of_offence_charge': 'Section 37', 'id_type': 'voter_card'}
+2026-01-21 17:21:09 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmptlhudyny.webm
+2026-01-21 17:21:09 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmptlhudyny.webm
+2026-01-21 17:21:11 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 17:21:11 - FormFiller - DEBUG - Transcribed text:  Case No. 86
+2026-01-21 17:21:11 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmptlhudyny.webm
+2026-01-21 17:21:11 - FormFiller - INFO - Processing transcription:  Case No. 86...
+2026-01-21 17:21:11 - FormFiller - INFO - Triggering the chain...
+2026-01-21 17:21:14 - FormFiller - INFO - Raw parsed data: {'arrest_caseno': '86'}
+2026-01-21 17:21:14 - FormFiller - INFO - Final Mapped Data: {'arrest_caseno': '86'}
+2026-01-21 17:36:47 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpvu_m82kr.webm
+2026-01-21 17:36:47 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpvu_m82kr.webm
+2026-01-21 17:36:55 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 17:36:55 - FormFiller - DEBUG - Transcribed text:  Arrest date is 20 October 2025, first name is Shyam, middle name is Mohan, last name  is Tripathi, alias is hee, gajay name is aka Tripathi, age is 22, identification mark  is none, arrest time is 9.15, district is Havda Rural, locality is 1, AC name is Havda  Uttar, municipality name is Havda Municipal Corporation, arrested by police, pin code  is 711107, mobile number is 9163642586, nature of offence is section 37, identification  proof is voter card, case number is 80.
+2026-01-21 17:36:55 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpvu_m82kr.webm
+2026-01-21 17:36:55 - FormFiller - INFO - Processing transcription:  Arrest date is 20 October 2025, first name is Shy...
+2026-01-21 17:36:55 - FormFiller - INFO - Triggering the chain...
+2026-01-21 17:37:00 - FormFiller - INFO - Raw parsed data: {'arrest_date': '2025-10-20', 'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan', 'arrest_lname': 'Tripathi', 'arrest_alias': 'Hee', 'arrest_gname': 'Aka Tripathi', 'arrest_age': '22', 'arrest_idmark': 'None', 'arrest_time': '09:15:00', 'arrest_district': '3', 'arrest_locality': '1', 'arrest_ac_name': 'Havda Uttar', 'arrest_municipality_name': 'Havda Municipal Corporation', 'arrest_by_whom': 'Police', 'arrest_pin': '711107', 'arrest_ph': '9163642586', 'arrest_nature_of_offence_charge': 'Section 37', 'id_type': 'voter_card', 'arrest_caseno': '80'}
+2026-01-21 17:37:00 - FormFiller - INFO - Final Mapped Data: {'arrest_date': '2025-10-20', 'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan', 'arrest_lname': 'Tripathi', 'arrest_alias': 'Hee', 'arrest_gname': 'Aka Tripathi', 'arrest_age': '22', 'arrest_time': '09:15:00', 'arrest_district': '3', 'arrest_locality': '1', 'arrest_ac_name': 'Havda Uttar', 'arrest_municipality_name': 'Havda Municipal Corporation', 'arrest_by_whom': 'Police', 'arrest_pin': '711107', 'arrest_ph': '9163642586', 'arrest_nature_of_offence_charge': 'Section 37', 'id_type': 'voter_card', 'arrest_caseno': '80'}
+2026-01-21 22:05:50 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 22:05:50 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 22:05:50 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 22:05:53 - FormFiller - INFO - Initializing AI models...
+2026-01-21 22:05:53 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 22:05:58 - FormFiller - INFO - Whisper model loaded successfully
+2026-01-21 22:05:58 - FormFiller - INFO - No Google API key found, loading Ollama model: ministral-3:3b...
+2026-01-21 22:05:58 - FormFiller - INFO - Ollama model loaded successfully
+2026-01-21 22:05:58 - FormFiller - INFO - AI models initialized successfully
+2026-01-21 22:08:01 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmp8rxmxjrv.webm
+2026-01-21 22:08:01 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmp8rxmxjrv.webm
+2026-01-21 22:08:08 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:08:08 - FormFiller - DEBUG - Transcribed text: 
+2026-01-21 22:08:08 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmp8rxmxjrv.webm
+2026-01-21 22:08:08 - FormFiller - INFO - Processing transcription: ...
+2026-01-21 22:08:08 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:08:12 - FormFiller - ERROR - Error during field mapping: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-01-21 22:08:52 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmp73lmvpsa.webm
+2026-01-21 22:08:52 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmp73lmvpsa.webm
+2026-01-21 22:09:00 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:09:00 - FormFiller - DEBUG - Transcribed text:  Case date is 20 October 2025, BNS section is 25, select arms act.
+2026-01-21 22:09:00 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmp73lmvpsa.webm
+2026-01-21 22:09:00 - FormFiller - INFO - Processing transcription:  Case date is 20 October 2025, BNS section is 25, ...
+2026-01-21 22:09:00 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:09:04 - FormFiller - ERROR - Error during field mapping: [WinError 10061] No connection could be made because the target machine actively refused it
+2026-01-21 22:10:38 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmp_eu_jttg.webm
+2026-01-21 22:10:38 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmp_eu_jttg.webm
+2026-01-21 22:10:58 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:10:58 - FormFiller - DEBUG - Transcribed text:  Case date is 20 October 2025, BNS section is 25, select arms act section is 54 and yes  it is a cybercrime case.
+2026-01-21 22:10:58 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmp_eu_jttg.webm
+2026-01-21 22:10:58 - FormFiller - INFO - Processing transcription:  Case date is 20 October 2025, BNS section is 25, ...
+2026-01-21 22:10:58 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:11:05 - FormFiller - ERROR - Error during field mapping: model requires more system memory (7.3 GiB) than is available (7.1 GiB) (status code: 500)
+2026-01-21 22:11:58 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 22:11:58 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 22:11:58 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 22:12:02 - FormFiller - INFO - Initializing AI models...
+2026-01-21 22:12:02 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 22:12:07 - FormFiller - INFO - Whisper model loaded successfully
+2026-01-21 22:12:07 - FormFiller - INFO - No Google API key found, loading Ollama model: llama3.2:3b...
+2026-01-21 22:12:07 - FormFiller - INFO - Ollama model loaded successfully
+2026-01-21 22:12:07 - FormFiller - INFO - AI models initialized successfully
+2026-01-21 22:13:05 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmppyzr1sji.webm
+2026-01-21 22:13:05 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmppyzr1sji.webm
+2026-01-21 22:13:16 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:13:16 - FormFiller - DEBUG - Transcribed text:  Case date is 20 October 2025.  BNS section is 25.  Select Arms Act.  Section is 22
+2026-01-21 22:13:16 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmppyzr1sji.webm
+2026-01-21 22:13:16 - FormFiller - INFO - Processing transcription:  Case date is 20 October 2025.  BNS section is 25....
+2026-01-21 22:13:16 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:13:21 - FormFiller - ERROR - Error during field mapping: model requires more system memory (8.9 GiB) than is available (7.4 GiB) (status code: 500)
+2026-01-21 22:19:43 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 22:19:43 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 22:19:43 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 22:19:45 - FormFiller - INFO - Initializing AI models...
+2026-01-21 22:19:45 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 22:19:49 - FormFiller - INFO - Whisper model loaded successfully
+2026-01-21 22:19:49 - FormFiller - INFO - No Google API key found, loading Ollama model: qwen3-vl:2b...
+2026-01-21 22:19:49 - FormFiller - INFO - Ollama model loaded successfully
+2026-01-21 22:19:49 - FormFiller - INFO - AI models initialized successfully
+2026-01-21 22:20:34 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpgfrht6nu.webm
+2026-01-21 22:20:34 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpgfrht6nu.webm
+2026-01-21 22:20:41 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:20:41 - FormFiller - DEBUG - Transcribed text:  First name is Shyam, middle name is Mohan, last name is Tripathi, alias is hello, guardian name is aka, age is 50.
+2026-01-21 22:20:41 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpgfrht6nu.webm
+2026-01-21 22:20:41 - FormFiller - INFO - Processing transcription:  First name is Shyam, middle name is Mohan, last n...
+2026-01-21 22:20:41 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:24:44 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 22:24:44 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 22:24:44 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 22:24:46 - FormFiller - INFO - Initializing AI models...
+2026-01-21 22:24:46 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 22:24:56 - FormFiller - INFO - Whisper model loaded successfully
+2026-01-21 22:24:56 - FormFiller - INFO - No Google API key found, loading Ollama model: qwen3-vl:2b...
+2026-01-21 22:24:56 - FormFiller - INFO - Ollama model loaded successfully
+2026-01-21 22:24:56 - FormFiller - INFO - AI models initialized successfully
+2026-01-21 22:25:26 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmppqr10g4e.webm
+2026-01-21 22:25:26 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmppqr10g4e.webm
+2026-01-21 22:25:39 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:25:39 - FormFiller - DEBUG - Transcribed text:  Case date is 20 October 2025, BNS section is 50.  Case date is 20 October 2025, BNS section is 50.
+2026-01-21 22:25:39 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmppqr10g4e.webm
+2026-01-21 22:25:39 - FormFiller - INFO - Processing transcription:  Case date is 20 October 2025, BNS section is 50. ...
+2026-01-21 22:25:39 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:29:00 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 22:29:00 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 22:29:00 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 22:29:03 - FormFiller - INFO - Initializing AI models...
+2026-01-21 22:29:03 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 22:29:14 - FormFiller - INFO - Whisper model loaded successfully
+2026-01-21 22:29:14 - FormFiller - INFO - No Google API key found, loading Ollama model: gemma3:1b...
+2026-01-21 22:29:14 - FormFiller - INFO - Ollama model loaded successfully
+2026-01-21 22:29:14 - FormFiller - INFO - AI models initialized successfully
+2026-01-21 22:29:42 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpgzl8n_a6.webm
+2026-01-21 22:29:42 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpgzl8n_a6.webm
+2026-01-21 22:29:48 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:29:48 - FormFiller - DEBUG - Transcribed text:  Case date is 20 October 2025, BNS section is 50, select Arms Act, section is 20.
+2026-01-21 22:29:48 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpgzl8n_a6.webm
+2026-01-21 22:29:48 - FormFiller - INFO - Processing transcription:  Case date is 20 October 2025, BNS section is 50, ...
+2026-01-21 22:29:48 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:30:25 - FormFiller - INFO - Raw parsed data: {}
+2026-01-21 22:30:25 - FormFiller - INFO - Final Mapped Data: {}
+2026-01-21 22:31:47 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpdu8f9i30.webm
+2026-01-21 22:31:47 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpdu8f9i30.webm
+2026-01-21 22:31:53 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:31:53 - FormFiller - DEBUG - Transcribed text:  Case date is 20 October 2025, BNS Section is 50, Select Arms Act, Section is 52.
+2026-01-21 22:31:53 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpdu8f9i30.webm
+2026-01-21 22:31:53 - FormFiller - INFO - Processing transcription:  Case date is 20 October 2025, BNS Section is 50, ...
+2026-01-21 22:31:53 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:32:01 - FormFiller - INFO - Raw parsed data: {}
+2026-01-21 22:32:01 - FormFiller - INFO - Final Mapped Data: {}
+2026-01-21 22:32:59 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 22:32:59 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 22:32:59 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 22:33:01 - FormFiller - INFO - Initializing AI models...
+2026-01-21 22:33:01 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 22:33:06 - FormFiller - INFO - Whisper model loaded successfully
+2026-01-21 22:33:06 - FormFiller - INFO - Google API key found, using Gemini model instead of Ollama.
+2026-01-21 22:33:06 - FormFiller - INFO - Gemini model loaded successfully
+2026-01-21 22:33:06 - FormFiller - INFO - AI models initialized successfully
+2026-01-21 22:34:15 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmp9lwkjpq2.webm
+2026-01-21 22:34:15 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmp9lwkjpq2.webm
+2026-01-21 22:34:28 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:34:28 - FormFiller - DEBUG - Transcribed text:  Case date is 20 October 2025, PNS section is 50, select arms act, section is 50, yes it  is cybercrime case.  And check cyber in case tag.
+2026-01-21 22:34:28 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmp9lwkjpq2.webm
+2026-01-21 22:34:28 - FormFiller - INFO - Processing transcription:  Case date is 20 October 2025, PNS section is 50, ...
+2026-01-21 22:34:28 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:34:31 - FormFiller - INFO - Raw parsed data: {'case_date': '20-10-2025', 'ipsection': '50', 'case_actname': ' Arms Act, 1959', 'case_act': '50', 'cyber_check': 'true', 'case_type': 'Cyber'}
+2026-01-21 22:34:31 - FormFiller - INFO - Final Mapped Data: {'case_date': '20-10-2025', 'ipsection': '50', 'case_actname': 'Arms Act, 1959', 'case_act': '50', 'cyber_check': 'true', 'case_type': 'Cyber'}
+2026-01-21 22:35:33 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmp84r8yip3.webm
+2026-01-21 22:35:33 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmp84r8yip3.webm
+2026-01-21 22:35:42 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:35:42 - FormFiller - DEBUG - Transcribed text:  In red ink write red, in received it is a black ink.
+2026-01-21 22:35:42 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmp84r8yip3.webm
+2026-01-21 22:35:42 - FormFiller - INFO - Processing transcription:  In red ink write red, in received it is a black i...
+2026-01-21 22:35:42 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:35:45 - FormFiller - INFO - Raw parsed data: {'warrest_executed_red': 'Red', 'warrest_received': 'Black'}
+2026-01-21 22:35:45 - FormFiller - INFO - Final Mapped Data: {'warrest_executed_red': 'Red', 'warrest_received': 'Black'}
+2026-01-21 22:48:15 - FormFiller - INFO - Starting FormFiller server...
+2026-01-21 22:48:15 - FormFiller - INFO - Server will run at http://0.0.0.0:8000
+2026-01-21 22:48:15 - FormFiller - INFO - API documentation available at http://0.0.0.0:8000/docs
+2026-01-21 22:48:17 - FormFiller - INFO - Initializing AI models...
+2026-01-21 22:48:17 - FormFiller - INFO - Loading Whisper model: medium
+2026-01-21 22:48:23 - FormFiller - INFO - Whisper model loaded successfully
+2026-01-21 22:48:23 - FormFiller - INFO - OpenAI API key found, using OpenAI model.
+2026-01-21 22:48:24 - FormFiller - INFO - OpenAI model loaded successfully
+2026-01-21 22:48:24 - FormFiller - INFO - AI models initialized successfully
+2026-01-21 22:49:46 - FormFiller - INFO - Processing audio via temporary file: C:\Users\User\AppData\Local\Temp\tmpvudpkvno.webm
+2026-01-21 22:49:46 - FormFiller - INFO - Transcribing audio file: C:\Users\User\AppData\Local\Temp\tmpvudpkvno.webm
+2026-01-21 22:49:52 - FormFiller - INFO - Transcription completed. Detected language: en
+2026-01-21 22:49:52 - FormFiller - DEBUG - Transcribed text:  First name is Shyam. Middle name is Mohan. Last name is Tripathi. Arrest date is 20 August 2025.  Alias is He. Gender is Male. Guardian name is AK. Age is 50. Identification mark is None.  Arrest time is 9.15. District is Havda Rural. Locality is One. AC name is Havda Uttar.  Municipality name is Havda Municipal Corporation. Arrested by Police. Pin code is 711107.  Mobile number is 9163642586. Identification proof is voter card. KCR is 2024. Case number is 5.
+2026-01-21 22:49:52 - FormFiller - DEBUG - Cleaned up temporary file: C:\Users\User\AppData\Local\Temp\tmpvudpkvno.webm
+2026-01-21 22:49:52 - FormFiller - INFO - Processing transcription:  First name is Shyam. Middle name is Mohan. Last n...
+2026-01-21 22:49:52 - FormFiller - INFO - Triggering the chain...
+2026-01-21 22:49:58 - FormFiller - INFO - Raw parsed data: {'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan', 'arrest_lname': 'Tripathi', 'arrest_date': '20/08/2025', 'arrest_alias': 'He', 'sagender': 'true', 'arrest_gname': 'AK', 'arrest_age': '50', 'arrest_idmark': 'None', 'arrest_time': '9:15', 'arrest_district': '3', 'arrest_locality': 'One', 'arrest_ac_name': 'Howrah Uttar', 'arrest_municipality_name': 'Howrah Municipal Corporation', 'arrest_by_whom': 'Police', 'arrest_pin': '711107', 'arrest_ph': '9163642586', 'id_type': 'voter_card', 'arrest_year': '2024', 'arrest_caseno': '5'}
+2026-01-21 22:49:58 - FormFiller - INFO - Final Mapped Data: {'arrest_fname': 'Shyam', 'arrest_mname': 'Mohan', 'arrest_lname': 'Tripathi', 'arrest_date': '20/08/2025', 'arrest_alias': 'He', 'sagender': 'true', 'arrest_gname': 'AK', 'arrest_age': '50', 'arrest_time': '9:15', 'arrest_district': '3', 'arrest_locality': 'One', 'arrest_ac_name': 'Howrah Uttar', 'arrest_municipality_name': 'Howrah Municipal Corporation', 'arrest_by_whom': 'Police', 'arrest_pin': '711107', 'arrest_ph': '9163642586', 'id_type': 'voter_card', 'arrest_year': '2024', 'arrest_caseno': '5'}

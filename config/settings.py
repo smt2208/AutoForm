@@ -24,10 +24,10 @@ class Settings(BaseSettings):
     # Audio processing
     UPLOAD_DIR: str = "temp_uploads"
     WHISPER_MODEL: str = "medium"  # Options: tiny, base, small, medium, large-v3
-    WHISPER_DEVICE: str = "cpu"  # Options: cpu, cuda
+    WHISPER_DEVICE: str = "cuda"  # Options: cpu, cuda
     
     # Ollama
-    OLLAMA_MODEL: str = "gemma3:1b"
+    OLLAMA_MODEL: str = "ministral-3:3b"
     OLLAMA_BASE_URL: str = "http://localhost:11434"
 
     # Gemini
